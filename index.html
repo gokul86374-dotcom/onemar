@@ -1,0 +1,1059 @@
+```html
+<!-- ... existing code ... -->
+    <title>தமிழ் இலக்கிய வினாடி வினா (57 வினாக்கள்) - Tamil Literature Quiz</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Tamil -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Tamil', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fdfbf7 0%, #f4ebd0 100%);
+            min-height: 100vh;
+        }
+        .cultural-pattern {
+            background-color: #78350f;
+            background-image: radial-gradient(#b45309 0.75px, transparent 0.75px), radial-gradient(#b45309 0.75px, #78350f 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+        /* Custom scrollbar for question grid */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #fef3c7;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #b45309;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-gray-800">
+
+    <!-- Header Section -->
+    <header class="cultural-pattern text-white py-5 px-4 shadow-md text-center relative">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="text-center sm:text-left">
+                <h1 class="text-2xl md:text-3xl font-bold tracking-wide">தமிழ் இலக்கிய வினாடி வினா</h1>
+                <p class="text-amber-200 text-xs md:text-sm">பாடப்புத்தக முழு வினாத்தொகுப்பு (57 ஒரு மதிப்பெண் வினாக்கள்)</p>
+            </div>
+            <button id="home-header-btn" onclick="goHome()" class="hidden bg-amber-900/80 hover:bg-amber-950 text-amber-100 border border-amber-500/40 text-xs md:text-sm font-medium px-4 py-2 rounded-xl transition">
+                ← முகப்பு (பகுதிகள்)
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6">
+        <div class="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-5 md:p-8 border border-amber-100">
+            
+            <!-- Start Screen / Lesson Selector -->
+            <div id="start-screen" class="py-2">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-800 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl font-bold shadow-inner border border-amber-200">
+                        தமிழ்
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-bold text-amber-900 mb-2">பயிற்சிப் பகுதியைத் தேர்ந்தெடுக்கவும்</h2>
+                    <p class="text-gray-600 text-sm md:text-base max-w-xl mx-auto">
+                        அனைத்து 57 வினாக்களையும் ஒரே தொகுப்பாகவோ அல்லது ஒவ்வொரு பாடவாரியாகவோ பயிற்சி செய்யலாம்.
+                    </p>
+                </div>
+
+                <!-- Shuffle Toggle -->
+                <div class="flex items-center justify-center mb-6">
+                    <label class="inline-flex items-center cursor-pointer bg-amber-50 px-4 py-2 rounded-xl border border-amber-200">
+                        <input type="checkbox" id="shuffle-toggle" class="sr-only peer">
+                        <div class="relative w-10 h-5 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-700"></div>
+                        <span class="ms-3 text-sm font-medium text-amber-900">வினாக்களை வரிசை மாற்றி அமை (Shuffle)</span>
+                    </label>
+                </div>
+
+                <!-- Mode / Lesson Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- All Questions Card -->
+                    <button onclick="startQuiz('all')" class="md:col-span-2 text-left p-5 rounded-2xl bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white shadow-md transition-all transform hover:-translate-y-0.5 flex items-center justify-between group">
+                        <div>
+                            <span class="inline-block text-xs font-semibold uppercase tracking-wider bg-amber-950/40 text-amber-200 px-2.5 py-1 rounded-lg mb-1.5">முழுத் தேர்வு</span>
+                            <h3 class="text-lg md:text-xl font-bold">அனைத்து வினாக்கள் (All Lessons)</h3>
+                            <p class="text-amber-100 text-xs md:text-sm mt-0.5">4 பாடங்களிலிருந்தும் மொத்த வினாக்கள்</p>
+                        </div>
+                        <div class="text-right flex-shrink-0 ml-4">
+                            <span class="block text-2xl md:text-3xl font-bold">57</span>
+                            <span class="text-xs text-amber-200">வினாக்கள் →</span>
+                        </div>
+                    </button>
+
+                    <!-- Lesson 1 -->
+                    <button onclick="startQuiz('lesson1')" class="text-left p-4 rounded-2xl bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200 transition-all flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700">பாடம் 1</span>
+                            <h4 class="font-bold text-gray-900 text-base mt-0.5">பாரதியார் & செந்தமிழ் நாடு</h4>
+                            <p class="text-xs text-gray-500 mt-1">பக்கங்கள் 8 & 9</p>
+                        </div>
+                        <span class="bg-white text-amber-800 font-bold text-sm px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm ml-2 flex-shrink-0">23 வினாக்கள்</span>
+                    </button>
+
+                    <!-- Lesson 2 -->
+                    <button onclick="startQuiz('lesson2')" class="text-left p-4 rounded-2xl bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200 transition-all flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700">பாடம் 2</span>
+                            <h4 class="font-bold text-gray-900 text-base mt-0.5">கண்ணன் என் தோழன்</h4>
+                            <p class="text-xs text-gray-500 mt-1">பக்கங்கள் 18 & 19</p>
+                        </div>
+                        <span class="bg-white text-amber-800 font-bold text-sm px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm ml-2 flex-shrink-0">15 வினாக்கள்</span>
+                    </button>
+
+                    <!-- Lesson 3 -->
+                    <button onclick="startQuiz('lesson3')" class="text-left p-4 rounded-2xl bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200 transition-all flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700">பாடம் 3</span>
+                            <h4 class="font-bold text-gray-900 text-base mt-0.5">தமிழின் இனிமை</h4>
+                            <p class="text-xs text-gray-500 mt-1">பக்கங்கள் 27 & 28</p>
+                        </div>
+                        <span class="bg-white text-amber-800 font-bold text-sm px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm ml-2 flex-shrink-0">13 வினாக்கள்</span>
+                    </button>
+
+                    <!-- Lesson 4 -->
+                    <button onclick="startQuiz('lesson4')" class="text-left p-4 rounded-2xl bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200 transition-all flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700">பாடம் 4</span>
+                            <h4 class="font-bold text-gray-900 text-base mt-0.5">அறம் செய்க! & கவிமணி</h4>
+                            <p class="text-xs text-gray-500 mt-1">பக்கம் 38 & ஆசிரியர் அறிமுகம்</p>
+                        </div>
+                        <span class="bg-white text-amber-800 font-bold text-sm px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm ml-2 flex-shrink-0">6 வினாக்கள்</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div id="quiz-screen" class="hidden">
+                <!-- Lesson Badge & Stats -->
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-4 border-b border-gray-100 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="question-number" class="text-xs md:text-sm font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+                            வினா 1 / 57
+                        </span>
+                        <span id="lesson-badge" class="text-xs font-medium text-stone-600 bg-stone-100 px-2.5 py-1 rounded-full">
+                            பாடம் 1
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="score-tracker" class="text-xs md:text-sm font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                            மதிப்பெண்: 0
+                        </span>
+                        <button onclick="toggleNavigator()" class="text-xs font-semibold text-amber-800 hover:bg-amber-100 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 transition">
+                            வினா எண் பட்டியல் ▾
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-100 rounded-full h-2 mb-5 overflow-hidden">
+                    <div id="progress-bar" class="bg-amber-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Collapsible Question Jump Grid -->
+                <div id="question-navigator" class="hidden mb-5 p-3 bg-amber-50/70 rounded-xl border border-amber-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-semibold text-amber-900">நேரடியாக வினாவிற்குச் செல்ல:</span>
+                        <div class="flex items-center gap-3 text-[11px] text-gray-600">
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>சரி</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>தவறு</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-white border border-amber-300 inline-block"></span>மீதமுள்ளவை</span>
+                        </div>
+                    </div>
+                    <div id="navigator-grid" class="grid grid-cols-8 sm:grid-cols-10 md:grid-cols-12 gap-1.5 max-h-36 overflow-y-auto custom-scroll pr-1">
+                        <!-- Number buttons injected here -->
+                    </div>
+                </div>
+
+                <!-- Question Text -->
+                <div class="mb-6 bg-stone-50/80 p-4 md:p-5 rounded-xl border border-stone-200/70">
+                    <h3 id="question-text" class="text-lg md:text-xl font-bold text-gray-900 leading-relaxed">
+                        <!-- Question goes here -->
+                    </h3>
+                </div>
+
+                <!-- Options List -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Options generated dynamically -->
+                </div>
+
+                <!-- Feedback Banner -->
+                <div id="feedback-banner" class="hidden mb-5 p-3.5 rounded-xl text-sm font-medium flex items-center justify-between">
+                    <span id="feedback-text"></span>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                    <button id="prev-btn" onclick="handlePrevQuestion()" class="text-gray-600 hover:text-amber-900 hover:bg-amber-50 font-semibold px-4 py-2.5 rounded-xl border border-gray-200 transition text-sm">
+                        ← முந்தைய வினா
+                    </button>
+                    <button onclick="showResult()" class="text-xs text-gray-500 hover:text-amber-800 underline px-2">
+                        தேர்வை முடித்து மதிப்பெண் காண்க
+                    </button>
+                    <button id="next-btn" onclick="handleNextQuestion()" class="bg-amber-700 hover:bg-amber-800 text-white font-semibold px-6 py-2.5 rounded-xl shadow transition-all duration-200 text-sm">
+                        அடுத்த வினா →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Screen -->
+            <div id="result-screen" class="hidden py-4">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center mx-auto mb-3 text-4xl shadow-inner">
+                        🏆
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-amber-900 mb-1">வினாடி வினா நிறைவுபெற்றது!</h2>
+                    <p id="result-message" class="text-gray-600 mb-5 text-base md:text-lg">மிக அருமையாகச் செய்துள்ளீர்கள்!</p>
+                    
+                    <div class="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
+                            <p class="text-xs text-gray-600">மொத்த மதிப்பெண்</p>
+                            <p id="final-score" class="text-xl md:text-2xl font-bold text-amber-800 mt-1">0 / 57</p>
+                        </div>
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3">
+                            <p class="text-xs text-emerald-700">சரியானவை</p>
+                            <p id="correct-count" class="text-xl md:text-2xl font-bold text-emerald-700 mt-1">0</p>
+                        </div>
+                        <div class="bg-rose-50 border border-rose-200 rounded-xl p-3">
+                            <p class="text-xs text-rose-700">தவறானவை</p>
+                            <p id="wrong-count" class="text-xl md:text-2xl font-bold text-rose-700 mt-1">0</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3 mb-8">
+                        <button onclick="restartCurrentQuiz()" class="bg-amber-700 hover:bg-amber-800 text-white font-semibold px-6 py-2.5 rounded-xl shadow transition">
+                            இதே பகுதியை மீண்டும் செய்க
+                        </button>
+                        <button onclick="goHome()" class="bg-white hover:bg-amber-50 text-amber-900 border border-amber-300 font-semibold px-6 py-2.5 rounded-xl shadow-sm transition">
+                            வேறு பாடம் தேர்ந்தெடுக்க
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Detailed Answer Review Section -->
+                <div class="border-t border-gray-200 pt-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-gray-900">விடைகள் சரிபார்ப்பு (Answer Review)</h3>
+                        <select id="review-filter" onchange="renderReviewList()" class="text-xs md:text-sm border border-amber-200 rounded-lg px-3 py-1.5 bg-amber-50 text-amber-900 font-medium">
+                            <option value="all">அனைத்து வினாக்கள்</option>
+                            <option value="wrong">தவறாக விடையளித்தவை மட்டும்</option>
+                            <option value="unanswered">விடையளிக்காதவை மட்டும்</option>
+                        </select>
+                    </div>
+                    <div id="review-list" class="space-y-3 max-h-96 overflow-y-auto custom-scroll pr-1">
+                        <!-- Review cards injected here -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 text-center py-4 text-xs md:text-sm border-t border-stone-800">
+        <p>தமிழ் இலக்கிய வினாடி வினா பயன்பாடு (57 வினாக்கள்) &copy; 2026</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Complete Dataset of all 57 Multiple-Choice Questions from the 10 scanned pages
+        const allQuizData = [
+            // --- LESSON 1: பாரதியார் / செந்தமிழ் நாடு (Pages 8 & 9) - 23 Questions ---
+            {
+                id: 1,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "சுப்பிரமணிய பாரதியார் பிறந்த ஊர்.",
+                options: ["இராமநாதபுரம்", "கடலூர்", "புதுச்சேரி", "எட்டயபுரம்"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 2,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "பாரதி பிறந்த ஆண்டு",
+                options: ["1881", "1882", "1884", "1886"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 3,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "பாரதியின் தந்தை",
+                options: ["சுப்பிரமணிய அய்யர்", "இராமலிங்க அய்யர்", "சின்னச்சாமி அய்யர்", "சுவாமிநாத அய்யர்"],
+                answer: 2 // இ
+            },
+            {
+                id: 4,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "பாரதியின் தாய்",
+                options: ["செல்லம்மாள்", "இலக்குமி அம்மாள்", "மீனாட்சி அம்மாள்", "முத்தம்மாள்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 5,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "'தேசிய கவி' என்ற பட்டத்துக்கு உரியவர்",
+                options: ["பாரதி", "பாரதிதாசன்", "கவிமணி", "நாமக்கல் கவிஞர்"],
+                answer: 0 // அ
+            },
+            {
+                id: 6,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "'இந்தியா' இதழின் ஆசிரியர்",
+                options: ["பாரதிதாசன்", "கண்ணதாசன்", "பாரதியார்", "கவிமணி"],
+                answer: 2 // இ
+            },
+            {
+                id: 7,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "சூரத் காங்கிரஸ் மாநாடு நடந்த ஆண்டு",
+                options: ["1907", "1909", "1910", "1911"],
+                answer: 0 // அ
+            },
+            {
+                id: 8,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "பாரதியின் முப்பெரும் பாடல்களில் ஒன்று",
+                options: ["பாப்பாப் பாட்டு", "தேசிய கீதங்கள்", "ஞானப்பாடல்கள்", "குயில்பாட்டு"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 9,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "பகவத்கீதையைத் தமிழில் மொழிபெயர்த்தவர்",
+                options: ["பாரதிதாசன்", "பாரதியார்", "கவிமணி", "நாமக்கல் கவிஞர்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 10,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "பாரதியாரின் சீடர்களில் ஒருவர்",
+                options: ["கண்ணதாசன்", "வாணிதாசன்", "வ.ர.வ.சு.நெல்லையப்பர்", "சுரதா"],
+                answer: 2 // இ
+            },
+            {
+                id: 11,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "________ நிறைந்த தமிழ்நாடு",
+                options: ["வீரம்", "வெகுமதி", "கல்வி", "ஞானம்"],
+                answer: 0 // அ
+            },
+            {
+                id: 12,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "உயர் ________ செறிந்த தமிழ்நாடு",
+                options: ["கல்வி", "புகழ்", "ஞானம்", "வீரம்"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 13,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "தமிழ் கண்ட ஆறுகளில் ஒன்று",
+                options: ["காவிரி", "வைகை", "பாலாறு", "தென்பெண்ணை"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 14,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "முத்தமிழ் மாமுனி",
+                options: ["வசிஷ்டர்", "விசுவாமித்திரர்", "அகத்தியர்", "கௌசிகர்"],
+                answer: 2 // இ
+            },
+            {
+                id: 15,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "பொலிப்பு என்ற சொல்லின் பொருள்",
+                options: ["எளிமை", "அழகு", "இளமை", "வலிமை"],
+                answer: 2 // இ
+            },
+            {
+                id: 16,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "வடமலையின் குன்றம் எது?",
+                options: ["பழனி", "திருத்தணி", "திருவேங்கடம்", "திருவரங்கம்"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 17,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "'மாலை' பொருள் தருக.",
+                options: ["முருகன்", "சிவன்", "பிரமன்", "திருமால்"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 18,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "புகழ்க் ________ பிறந்த தமிழ்நாடு",
+                options: ["கம்பன்", "வள்ளுவன்", "இளங்கோ", "சாத்தனார்"],
+                answer: 0 // அ
+            },
+            {
+                id: 19,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "வள்ளுவன் இயற்றிய நூல்",
+                options: ["சிலம்பு", "திருக்குறள்", "மணிமேகலை", "இராமாயணம்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 20,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "'நெஞ்சை அள்ளும் மணியாரம்' என்று புகழப்படும் நூல்",
+                options: ["சிலப்பதிகாரம்", "மணிமேகலை", "திருக்குறள்", "கம்பராமாயணம்"],
+                answer: 0 // அ
+            },
+            {
+                id: 21,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "புலிக்கொடி - எந்த அரசனுக்குரியது?",
+                options: ["சேரன்", "சோழன்", "பாண்டியன்", "சிங்கள அரசன்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 22,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "மீன்கொடிக்குரிய அரசன் யார்?",
+                options: ["சோழன்", "சேரன்", "பாண்டியன்", "கலிங்கன்"],
+                answer: 2 // இ
+            },
+            {
+                id: 23,
+                lesson: "lesson1",
+                lessonName: "பாடம் 1: பாரதியார் & செந்தமிழ் நாடு",
+                question: "சமர் செய்து வென்ற நாடு எது?",
+                options: ["சிங்களம்", "சீனம்", "யவனம்", "கலிங்கம்"],
+                answer: 3 // ஈ
+            },
+
+            // --- LESSON 2: கண்ணன் என் தோழன் (Pages 18 & 19) - 15 Questions ---
+            {
+                id: 24,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "பொன் போன்ற மேனியை உடையவன் யார்?",
+                options: ["சுபத்திரை", "ஆதிரை", "சீதை", "ராதை"],
+                answer: 0 // அ
+            },
+            {
+                id: 25,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "வில்லாளர் தலைவன் யார்?",
+                options: ["கண்ணன்", "கர்ணன்", "அர்ஜுனன்", "தர்மன்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 26,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "கௌரவர்களின் சூதினால் காட்டில் வாழ்ந்தவர்கள் யார்?",
+                options: ["லவன், குசன்", "முனிவர்கள்", "வேடர்கள்", "பாண்டவர்கள்"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 27,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "பாரதப் போர்க்களத்தில் தேரோட்டுபவனாக இருந்தவன் யார்?",
+                options: ["தர்மன்", "கண்ணன்", "கர்ணன்", "இந்திரன்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 28,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "'சேனை' என்பதன் பொருள் யாது?",
+                options: ["படை", "பாடை", "காடு", "பாதை"],
+                answer: 0 // அ
+            },
+            {
+                id: 29,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "துன்பத்தில் ஆழ்ந்திருக்கும்போது இதமாக ஆறுதல்கூறி மனக்கவலையை மாற்றுபவன் யார்?",
+                options: ["நண்பன்", "பெற்றோர்", "கண்ணனன்", "பாரதி"],
+                answer: 2 // இ
+            },
+            {
+                id: 30,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "மழைக்கு உதவுவது எது?",
+                options: ["ஆடை", "குடை", "வீடு", "கடை"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 31,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "மனத்தில் ஆணவம் தோன்றும்போது அதனை அழியச் செய்பவன் யார்?",
+                options: ["கண்ணனன்", "கர்ணன்", "ஈசன்", "திருமால்"],
+                answer: 0 // அ
+            },
+            {
+                id: 32,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "கண்ணனின் தீபத்தில் விழுந்து இறக்கும் பூச்சிகளைப்போல எதை நீக்குவான்?",
+                options: ["இன்பத்தை", "அழகு", "துன்பத்தை", "கஷ்டத்தை"],
+                answer: 2 // இ
+            },
+            {
+                id: 33,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "பெண்மையின் குணங்கள் உடையவன் யார்?",
+                options: ["கண்ணனன்", "தர்மன்", "இராமன்", "நகுலன்"],
+                answer: 0 // அ
+            },
+            {
+                id: 34,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "கண்ணனின் மொழி யாரின் மொழி போன்று இருக்கும்?",
+                options: ["குழந்தை", "கிள்ளை", "மைனா", "புறா"],
+                answer: 0 // அ
+            },
+            {
+                id: 35,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "ஓவியத்திலும், போர்க்கலையிலும் தேர்ச்சி பெற்றவர் யார்?",
+                options: ["அர்ஜுனன்", "கர்ணன்", "துரியோதனன்", "கண்ணனன்"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 36,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "நாம் படிப்பதற்கு கீதை என்னும் பாடம் கொடுத்தவன் யார்?",
+                options: ["கண்ணனன்", "தர்மன்", "கர்ணன்", "விதுரன்"],
+                answer: 0 // அ
+            },
+            {
+                id: 37,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "கண்ணன் என் தோழன் என்ற கவிதையின் ஆசிரியர் யார்?",
+                options: ["பாரதியார்", "பாரதிதாசன்", "வாணிதாசன்", "கண்ணதாசன்"],
+                answer: 0 // அ
+            },
+            {
+                id: 38,
+                lesson: "lesson2",
+                lessonName: "பாடம் 2: கண்ணன் என் தோழன்",
+                question: "அபய முழக்கும்போது போக்குச் சொல்லாமல் உடனே வருபவன் யார்?",
+                options: ["சகாதேவன்", "நகுலன்", "தர்மன்", "கண்ணனன்"],
+                answer: 3 // ஈ
+            },
+
+            // --- LESSON 3: தமிழின் இனிமை (Pages 27 & 28) - 13 Questions ---
+            {
+                id: 39,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "மனிதன் எதன் வாயிலாக அனுபவத்தைப் பெறுகின்றான்?",
+                options: ["ஐம்பொறிகள்", "கண், காது", "மூக்கு, செவி", "உணர்வுகள்"],
+                answer: 0 // அ
+            },
+            {
+                id: 40,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "மெய்வழி உறுவது எது?",
+                options: ["அன்பு", "அனுபவம்", "ஓசை", "இசை"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 41,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "ஐம்பொறிகள் வாயிலாகத் துய்க்கப்படும் இன்பங்களைவிட எது இனிமையானது என்கின்றார் பாரதிதாசன்?",
+                options: ["தமிழ்", "ஆங்கிலம்", "வடமொழி", "ஹிந்தி"],
+                answer: 0 // அ
+            },
+            {
+                id: 42,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "உடலுக்கும், உயிருக்கும் இனிமை தருவது எது?",
+                options: ["மொழி", "இனம்", "தமிழ்", "அன்பு"],
+                answer: 2 // இ
+            },
+            {
+                id: 43,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "குயில்போல் இனித்து பேசும் தன்மையுடையவள் யார் என்று பாரதிதாசன் கூறுகின்றார்?",
+                options: ["மகள்", "மனைவி", "தோழி", "தாய்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 44,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "நீலமணி போன்று சுடர்விடுவது எது?",
+                options: ["வானம்", "மலர்கள்", "கடல்", "சோலை"],
+                answer: 0 // அ
+            },
+            {
+                id: 45,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "'தமிழின் இனிமை' என்ற கவிதையின் ஆசிரியர் யார்?",
+                options: ["பாரதியார்", "பாரதிதாசன்", "வாணிதாசன்", "கண்ணதாசன்"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 46,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "பாரதிதாசனின் இயற்பெயர் என்ன?",
+                options: ["சுப்பிரமணி", "சுப்பராயலு", "கனக சுப்புரத்தினம்", "கனகசபை"],
+                answer: 2 // இ
+            },
+            {
+                id: 47,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "'கழை' என்பதன் பொருள் யாது?",
+                options: ["மூங்கில்", "கத்தி", "குச்சி", "கரும்பு"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 48,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "தமிழ்மொழியின் வியத்தகு ஆற்றல் கவிஞரின் ________ அப்பாற்பட்டதாகும்.",
+                options: ["புலமைக்கு", "ஆற்றலுக்கு", "சிறப்புக்கு", "பாட்டுக்கு"],
+                answer: 0 // அ
+            },
+            {
+                id: 49,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "தமிழும் பாரதிதாசனும் எதனைப் போன்றவர்கள்?",
+                options: ["உயிரும் உடலும்", "நகமும் சதையும்", "தந்தையும் மகனும்", "பூவும் நாறும்"],
+                answer: 0 // அ
+            },
+            {
+                id: 50,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "எதன் விந்தையை கவிஞர்களால் எழுத முடியாது?",
+                options: ["தமிழ்மொழியின் விந்தை", "அறிவியலின் விந்தை", "கவிஞர்களின் விந்தை", "சுவைகளின் விந்தை"],
+                answer: 0 // அ
+            },
+            {
+                id: 51,
+                lesson: "lesson3",
+                lessonName: "பாடம் 3: தமிழின் இனிமை",
+                question: "'புதுமை முரசு' என்ற கிழமை ஏட்டின் ஆசிரியராக பணியாற்றியவர் யார்?",
+                options: ["பாரதியார்", "பாரதிதாசன்", "கண்ணதாசன்", "வாணிதாசன்"],
+                answer: 1 // ஆ
+            },
+
+            // --- LESSON 4: அறம் செய்க! & கவிமணி (Page 38 & unnumbered page) - 6 Questions ---
+            {
+                id: 52,
+                lesson: "lesson4",
+                lessonName: "பாடம் 4: அறம் செய்க! & கவிமணி",
+                question: "'உலகப் பொன்னிலக்கியத்தை' உருவாக்கினவர்கள் யார்?",
+                options: ["புலவர்கள்", "மன்னர்கள்", "ஆசிரியர்கள்", "கவிஞர்கள்"],
+                answer: 0 // அ
+            },
+            {
+                id: 53,
+                lesson: "lesson4",
+                lessonName: "பாடம் 4: அறம் செய்க! & கவிமணி",
+                question: "செந்தமிழ்ச் சொல்லால் எவற்றை தொடங்க வேண்டும் என்கின்றார் பாவேந்தர்?",
+                options: ["பணி", "படிப்பு", "போர்", "விவாதம்"],
+                answer: 0 // அ
+            },
+            {
+                id: 54,
+                lesson: "lesson4",
+                lessonName: "பாடம் 4: அறம் செய்க! & கவிமணி",
+                question: "இந்த உலகில் கணக்கில் அடங்காத அளவு இருப்பது எது?",
+                options: ["மக்கள்", "பணம்", "நிலம்", "மதங்கள்"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 55,
+                lesson: "lesson4",
+                lessonName: "பாடம் 4: அறம் செய்க! & கவிமணி",
+                question: "எதற்கு சாவுமணி அடிக்க வேண்டும் என்கின்றார் பாவேந்தர்?",
+                options: ["சாதிக்கு", "மதம்", "உயர்வு தாழ்வு", "பொருளாதாரத்துக்கு"],
+                answer: 3 // ஈ
+            },
+            {
+                id: 56,
+                lesson: "lesson4",
+                lessonName: "பாடம் 4: அறம் செய்க! & கவிமணி",
+                question: "'அறம் செய்க' என்ற கவிதையை இயற்றியவர் யார்?",
+                options: ["பாரதியார்", "பாரதிதாசன்", "சுரதா", "மு.மேத்தா"],
+                answer: 1 // ஆ
+            },
+            {
+                id: 57,
+                lesson: "lesson4",
+                lessonName: "பாடம் 4: அறம் செய்க! & கவிமணி",
+                question: "நாம் ஒருவரோடு ஒருவர் துணையாக இருந்தால் எது நம்மைத் தேடிவரும் என்று கவிமணி கூறுகிறார்?",
+                options: ["புகழ்", "சண்டை", "பணம்", "படிப்பு"],
+                answer: 0 // அ
+            }
+        ];
+
+        // Application State
+        let activeQuestions = [];
+        let userAnswers = []; // stores selected index or null
+        let currentQuestionIndex = 0;
+        let currentLessonFilter = 'all';
+
+        const optionLabels = ['அ', 'ஆ', 'இ', 'ஈ'];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const homeHeaderBtn = document.getElementById('home-header-btn');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumber = document.getElementById('question-number');
+        const lessonBadge = document.getElementById('lesson-badge');
+        const scoreTracker = document.getElementById('score-tracker');
+        const progressBar = document.getElementById('progress-bar');
+        const feedbackBanner = document.getElementById('feedback-banner');
+        const feedbackText = document.getElementById('feedback-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        const questionNavigator = document.getElementById('question-navigator');
+        const navigatorGrid = document.getElementById('navigator-grid');
+
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function startQuiz(lessonFilter) {
+            currentLessonFilter = lessonFilter;
+            
+            let filtered = lessonFilter === 'all' 
+                ? [...allQuizData] 
+                : allQuizData.filter(q => q.lesson === lessonFilter);
+
+            const shouldShuffle = document.getElementById('shuffle-toggle').checked;
+            if (shouldShuffle) {
+                filtered = shuffleArray(filtered);
+            }
+
+            activeQuestions = filtered;
+            userAnswers = new Array(activeQuestions.length).fill(null);
+            currentQuestionIndex = 0;
+
+            startScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            homeHeaderBtn.classList.remove('hidden');
+
+            buildNavigatorGrid();
+            loadQuestion();
+        }
+
+        function goHome() {
+            quizScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+            homeHeaderBtn.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+
+        function restartCurrentQuiz() {
+            startQuiz(currentLessonFilter);
+        }
+
+        function calculateScore() {
+            let score = 0;
+            activeQuestions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answer) {
+                    score++;
+                }
+            });
+            return score;
+        }
+
+        function toggleNavigator() {
+            questionNavigator.classList.toggle('hidden');
+        }
+
+        function buildNavigatorGrid() {
+            navigatorGrid.innerHTML = '';
+            activeQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `nav-btn-${idx}`;
+                btn.textContent = idx + 1;
+                btn.className = "h-8 rounded-lg text-xs font-bold border transition flex items-center justify-center";
+                btn.onclick = () => {
+                    currentQuestionIndex = idx;
+                    loadQuestion();
+                };
+                navigatorGrid.appendChild(btn);
+            });
+            updateNavigatorGrid();
+        }
+
+        function updateNavigatorGrid() {
+            activeQuestions.forEach((q, idx) => {
+                const btn = document.getElementById(`nav-btn-${idx}`);
+                if (!btn) return;
+
+                const ans = userAnswers[idx];
+                let classes = "h-8 rounded-lg text-xs font-bold border transition flex items-center justify-center ";
+                
+                if (ans === null) {
+                    classes += "bg-white text-gray-700 border-amber-200 hover:bg-amber-100 ";
+                } else if (ans === q.answer) {
+                    classes += "bg-emerald-500 text-white border-emerald-600 ";
+                } else {
+                    classes += "bg-rose-500 text-white border-rose-600 ";
+                }
+
+                if (idx === currentQuestionIndex) {
+                    classes += "ring-2 ring-amber-800 ring-offset-1 ";
+                }
+
+                btn.className = classes;
+            });
+        }
+
+        function loadQuestion() {
+            const currentData = activeQuestions[currentQuestionIndex];
+            const selectedAnswer = userAnswers[currentQuestionIndex];
+            const score = calculateScore();
+
+            questionNumber.textContent = `வினா ${currentQuestionIndex + 1} / ${activeQuestions.length}`;
+            lessonBadge.textContent = currentData.lessonName;
+            scoreTracker.textContent = `மதிப்பெண்: ${score}`;
+            
+            const progressPercent = ((currentQuestionIndex + 1) / activeQuestions.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.textContent = `${currentQuestionIndex + 1}. ${currentData.question}`;
+            optionsContainer.innerHTML = '';
+
+            currentData.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                let btnClasses = "w-full text-left p-3.5 md:p-4 rounded-xl border font-medium transition-all duration-200 flex items-center shadow-sm ";
+                let labelClasses = "w-8 h-8 rounded-full font-bold flex items-center justify-center mr-3 text-sm flex-shrink-0 ";
+
+                if (selectedAnswer === null) {
+                    btnClasses += "border-amber-200 bg-amber-50/50 hover:bg-amber-100/80 text-gray-800 cursor-pointer";
+                    labelClasses += "bg-amber-200 text-amber-900";
+                } else {
+                    button.disabled = true;
+                    if (index === currentData.answer) {
+                        btnClasses += "bg-emerald-100 border-emerald-500 text-emerald-950 font-semibold";
+                        labelClasses += "bg-emerald-600 text-white";
+                    } else if (index === selectedAnswer) {
+                        btnClasses += "bg-rose-100 border-rose-500 text-rose-950";
+                        labelClasses += "bg-rose-600 text-white";
+                    } else {
+                        btnClasses += "border-gray-200 bg-gray-50/60 text-gray-500 opacity-75";
+                        labelClasses += "bg-gray-200 text-gray-600";
+                    }
+                }
+
+                button.className = btnClasses;
+
+                const labelSpan = document.createElement('span');
+                labelSpan.className = labelClasses;
+                labelSpan.textContent = optionLabels[index];
+                
+                const textSpan = document.createElement('span');
+                textSpan.textContent = option;
+                
+                button.appendChild(labelSpan);
+                button.appendChild(textSpan);
+                
+                if (selectedAnswer === null) {
+                    button.onclick = () => selectOption(index);
+                }
+
+                optionsContainer.appendChild(button);
+            });
+
+            // Show feedback banner if already answered
+            if (selectedAnswer !== null) {
+                feedbackBanner.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-rose-50', 'text-rose-800', 'border-rose-200');
+                if (selectedAnswer === currentData.answer) {
+                    feedbackBanner.classList.add('bg-emerald-50', 'text-emerald-800', 'border', 'border-emerald-200');
+                    feedbackText.textContent = "✓ சரியான விடை! வாழ்த்துகள்.";
+                } else {
+                    const correctLabel = optionLabels[currentData.answer];
+                    const correctText = currentData.options[currentData.answer];
+                    feedbackBanner.classList.add('bg-rose-50', 'text-rose-800', 'border', 'border-rose-200');
+                    feedbackText.textContent = `✗ தவறான விடை. சரியான விடை: ${correctLabel}) ${correctText}`;
+                }
+            } else {
+                feedbackBanner.classList.add('hidden');
+            }
+
+            // Update Previous / Next button states
+            prevBtn.disabled = currentQuestionIndex === 0;
+            prevBtn.classList.toggle('opacity-40', currentQuestionIndex === 0);
+            prevBtn.classList.toggle('cursor-not-allowed', currentQuestionIndex === 0);
+
+            if (currentQuestionIndex < activeQuestions.length - 1) {
+                nextBtn.textContent = "அடுத்த வினா →";
+            } else {
+                nextBtn.textContent = "முடிவுகளைக் காண்க ✓";
+            }
+
+            updateNavigatorGrid();
+        }
+
+        function selectOption(selectedIndex) {
+            if (userAnswers[currentQuestionIndex] !== null) return;
+            userAnswers[currentQuestionIndex] = selectedIndex;
+            loadQuestion();
+        }
+
+        function handlePrevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function handleNextQuestion() {
+            if (currentQuestionIndex < activeQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quizScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+
+            const total = activeQuestions.length;
+            const correct = calculateScore();
+            const wrong = userAnswers.filter((ans, idx) => ans !== null && ans !== activeQuestions[idx].answer).length;
+            const percentage = Math.round((correct / total) * 100);
+
+            document.getElementById('final-score').textContent = `${correct} / ${total}`;
+            document.getElementById('correct-count').textContent = correct;
+            document.getElementById('wrong-count').textContent = wrong;
+
+            const resultMessage = document.getElementById('result-message');
+            if (correct === total) {
+                resultMessage.textContent = "அபார சாதனை! அனைத்து வினாக்களுக்கும் 100% சரியான விடையளித்துள்ளீர்கள்!";
+            } else if (percentage >= 75) {
+                resultMessage.textContent = `மிக அருமை! நீங்கள் ${percentage}% மதிப்பெண்கள் பெற்றுள்ளீர்கள்!`;
+            } else if (percentage >= 50) {
+                resultMessage.textContent = `நல்ல முயற்சி! நீங்கள் ${percentage}% மதிப்பெண்கள் பெற்றுள்ளீர்கள்.`;
+            } else {
+                resultMessage.textContent = "தொடர்ந்து பயிற்சி செய்யுங்கள்! கீழே உள்ள சரியான விடைகளைச் சரிபார்க்கவும்.";
+            }
+
+            document.getElementById('review-filter').value = 'all';
+            renderReviewList();
+        }
+
+        function renderReviewList() {
+            const filter = document.getElementById('review-filter').value;
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+
+            let count = 0;
+
+            activeQuestions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.answer;
+                const isUnanswered = userAns === null;
+
+                if (filter === 'wrong' && (isCorrect || isUnanswered)) return;
+                if (filter === 'unanswered' && !isUnanswered) return;
+
+                count++;
+
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-xl border text-left ${
+                    isUnanswered 
+                        ? 'bg-gray-50 border-gray-200' 
+                        : isCorrect 
+                            ? 'bg-emerald-50/60 border-emerald-200' 
+                            : 'bg-rose-50/60 border-rose-200'
+                }`;
+
+                const statusBadge = isUnanswered
+                    ? `<span class="text-xs font-semibold px-2 py-0.5 rounded bg-gray-200 text-gray-700">விடையளிக்கவில்லை</span>`
+                    : isCorrect
+                        ? `<span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-200 text-emerald-900">✓ சரி</span>`
+                        : `<span class="text-xs font-semibold px-2 py-0.5 rounded bg-rose-200 text-rose-900">✗ தவறு</span>`;
+
+                const userChoiceHtml = isUnanswered
+                    ? ''
+                    : `<p class="text-xs md:text-sm mt-1.5 ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}">
+                        <strong>உங்கள் விடை:</strong> ${optionLabels[userAns]}) ${q.options[userAns]}
+                       </p>`;
+
+                const correctChoiceHtml = (!isCorrect)
+                    ? `<p class="text-xs md:text-sm mt-1 text-emerald-900 font-medium">
+                        <strong>சரியான விடை:</strong> ${optionLabels[q.answer]}) ${q.options[q.answer]}
+                       </p>`
+                    : '';
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <p class="font-bold text-gray-900 text-sm md:text-base">${idx + 1}. ${q.question}</p>
+                        <div class="flex-shrink-0">${statusBadge}</div>
+                    </div>
+                    <p class="text-[11px] text-gray-500 mt-0.5">${q.lessonName}</p>
+                    ${userChoiceHtml}
+                    ${correctChoiceHtml}
+                `;
+
+                reviewList.appendChild(card);
+            });
+
+            if (count === 0) {
+                reviewList.innerHTML = `<p class="text-center text-gray-500 py-6 text-sm">இந்தப் பிரிவில் வினாக்கள் எதுவும் இல்லை.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
+```
